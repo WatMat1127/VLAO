@@ -4,7 +4,7 @@ The "VL_main.py" (in the "VL" directory) is a program to calculate the penarty f
 The "main.py" (in the "optimizer" directory) is a program to perform optimization of VL parameters by the conjugate gradient method.
 Each portion has a readme file with further information.  
 
-The codes have been slightly modified for publication from the version used in the original paper (https://doi.org/XXXXXXXXXX), but it has been confirmed that essentially the same results are obtained.
+For publication in GitHub, the codes have been slightly modified from the version used in the original paper (https://doi.org/XXXXXXXXXX), but it has been confirmed that essentially the same results are obtained.
 
 The codes have only been tested in the computer environment below, and may require minor modifications to run in different computer systems.
 
