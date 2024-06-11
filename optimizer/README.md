@@ -57,7 +57,9 @@ An arbitrary objective function can be implemented as the "calc_f_val_grad" func
 You can find elample files in the "Example" directrory. The format for the "calc_f_val_grad" function is as follows:
 
     def calc_f_val_grad(qm_ene_list, grad_list):
+        •••
         (calculation of f_val and f_grad)
+        •••
         return f_val, f_grad
 
 The "f_val" and "f_grad" are an objective function and a list of its gradients with respect to the VL parameters to be optimized.  
