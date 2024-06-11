@@ -39,16 +39,16 @@ Each ligand section must include one `atom_num_center`, `atom_num_sub`, and `off
 - The `atom_num_sub` statement specifies three atoms adjacent to the phosphorous atom (_e.g._, three Cl* atoms for PCl<sub>3</sub>).  
 - The `off_target_atom` statement specifies atoms to be excluded from the calculation of the ovoid-based LJ poitential.
   
-Each ligand section can include one or more "keeppot" and "keepanglepot" statements.
-- The "keeppot" statement specifies the parameters of the keep potential. The first integer defines the Cl* atom for which the keep potential is calculted; _k_<sub>keep</sub> and _r_<sub>0</sub> define the force constant and equiliblium distance of the keep potential.
-- The "keepanglepot" statement specifies the parameters of the keep angle potential. The first integer defines the Cl* atom for which the keep angle potential is calculted; _k_<sub>keep angle</sub> and _θ_<sub>0</sub> define the force constant and equiliblium angle of the keep angle potential.
+Each ligand section can include one or more `keeppot` and `keepanglepot` statements.
+- The `keeppot` statement specifies the parameters of the keep potential. The first integer defines the Cl* atom for which the keep potential is calculted; _k_<sub>keep</sub> and _r_<sub>0</sub> define the force constant and equiliblium distance of the keep potential.
+- The `keepanglepot` statement specifies the parameters of the keep angle potential. The first integer defines the Cl* atom for which the keep angle potential is calculted; _k_<sub>keep angle</sub> and _θ_<sub>0</sub> define the force constant and equiliblium angle of the keep angle potential.
 
-Each ligand section can include two or more "ovoid_LJpot" statements.
-- The "ovoid_LJpot" statement specifies the parameters of the ovoid-based LJ potential. The first integer defines the Cl* atom for which the ovoid-based LJ potential is calculted; _ε_ is the parameter corresponding to the well depth; _a_<sub>1</sub>, _a_<sub>2</sub>, _b_<sub>1</sub>, _b_<sub>2</sub>, _c_<sub>1</sub>, _c_<sub>2</sub> and _d_ are the parameters which define shape and size of the ovoid.
+Each ligand section can include two or more `ovoid_LJpot` statements.
+- The `ovoid_LJpot` statement specifies the parameters of the ovoid-based LJ potential. The first integer defines the Cl* atom for which the ovoid-based LJ potential is calculted; _ε_ is the parameter corresponding to the well depth; _a_<sub>1</sub>, _a_<sub>2</sub>, _b_<sub>1</sub>, _b_<sub>2</sub>, _c_<sub>1</sub>, _c_<sub>2</sub> and _d_ are the parameters which define shape and size of the ovoid.
 
 ## Step 2. Run GRRM 
 
-The GRRM23 program calls the "VL_main.py" at each iteration of structural optimization. If the above settings are working well, you will find _GRRM_job_\_LinkJOB.rrm_old and _GRRM_job_\_LinkJOB.rrm_final in addition to usual output files of the GRRM program. When the ovoid-based LJ potential is used, _GRRM_job_.phi_log and _GRRM_job_\_ovoid.xyz will be also generated.
+The GRRM23 program calls the `VL_main.py` at each iteration of structural optimization. If the above settings are working well, you will find _GRRM_job_\_LinkJOB.rrm_old and _GRRM_job_\_LinkJOB.rrm_final in addition to usual output files of the GRRM23 program. When the ovoid-based LJ potential is used, _GRRM_job_.phi_log and _GRRM_job_\_ovoid.xyz will be also generated.
 
 - _GRRM_job_\_LinkJOB.rrm_old and _GRRM_job_\_LinkJOB.rrm_final include the geometry and the corresponding electronic energy, gradient, and Hessian before and after adding penalty functions, respectively.
 - _GRRM_job_.phi_log includes the optimized internal parameters (**_q_**<sup>*</sup><sub>VL</sub>).
