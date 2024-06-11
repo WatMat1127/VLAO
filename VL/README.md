@@ -1,19 +1,19 @@
 
 # How to Run
 ## Step 0. Modify the shebang line in the VL main.py
-Modify the line as '#!/_xxx_/_yyy_/python'.
+Modify the line as `#!/_xxx_/_yyy_/python`.
 
 ## Step 1. Prepare input files
-The following files are required. You can find elample files in the "Example" directrory.  
+The following files are required. You can find example files in the `Example` directory.  
 - _GRRM_job_.com
 - _GRRM_job_.param
 
 ### GRRM_job.com
 An input file for the GRRM23 program. See [AFIR-web](https://afir.sci.hokudai.ac.jp) for the detailed format.
-The "SubAddExPot=_xxx_/_yyy_/VL_main.py" option needs to be specified in the option part to use the VL method.
+The `SubAddExPot=_xxx_/_yyy_/VL_main.py` option needs to be specified in the option part to use the VL method.
 
 ### GRRM_job.param
-An input file for the VL_main.py which specifies settings for the VL calculation in the following format:
+An input file for the `VL_main.py` which specifies settings for the VL calculation in the following format:
 
 ----------
 num_virtual_mol   =(int)  
@@ -31,13 +31,13 @@ LIGLIGLIGLIGLIGLIGLIGLIGLIGLIG
 ----------
 
 
-The total number of virtual molecules (or sections) should be specified in the "num_virtual_mol" statement.  
+The total number of virtual molecules (or sections) should be specified in the `num_virtual_mol` statement.  
 This number must be consistent with the number of the ligand sections (blocks between two 'LIGLIGLIGLIGLIGLIGLIGLIGLIGLIG's).  
 
-Each ligand section must include one "atom_num_center", "atom_num_sub" and "off_target_atom" statement in this order.  
-- The "atom_num_center" statement specifies the phosphorus atom.  
-- The "atom_num_sub" statement specifies three atoms adjacent to the phosphorous atom (_e.g._, three Cl* atoms for PCl3).  
-- The "off_target_atom" statement specifies atoms to be excluded from the calculation of the ovoid-based LJ poitential.
+Each ligand section must include one `atom_num_center`, `atom_num_sub`, and `off_target_atom` statement in this order.  
+- The `atom_num_center` statement specifies the phosphorus atom.  
+- The `atom_num_sub` statement specifies three atoms adjacent to the phosphorous atom (_e.g._, three Cl* atoms for PCl<sub>3</sub>).  
+- The `off_target_atom` statement specifies atoms to be excluded from the calculation of the ovoid-based LJ poitential.
   
 Each ligand section can include one or more "keeppot" and "keepanglepot" statements.
 - The "keeppot" statement specifies the parameters of the keep potential. The first integer defines the Cl* atom for which the keep potential is calculted; _k_<sub>keep</sub> and _r_<sub>0</sub> define the force constant and equiliblium distance of the keep potential.
