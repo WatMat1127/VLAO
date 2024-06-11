@@ -1,6 +1,6 @@
 
 # How to Run
-## Step 0. Modify shebang line in the VL main.py
+## Step 0. Modify the shebang line in the VL main.py
 Modify the line as '#!/_xxx_/_yyy_/python'.
 
 ## Step 1. Prepare input files
