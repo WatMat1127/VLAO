@@ -10,9 +10,9 @@ The codes have only been tested in the computer environment below, and may requi
 
 ## Test environment
 - GRRM23 program  
-- Gaussian 16  
-- Python 3.11.5  
+- Gaussian 16
+- conda 23.7.4
+- Python 3.11.5
 - pytorch 2.1.0  
 - numpy 1.24.3  
 
-## Lisence
