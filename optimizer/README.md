@@ -47,7 +47,7 @@ The "f_val_threshold" specifies another termination criterion. The calculation w
    
 
 ### GRRM_job_i.com
-An input file for the GRRM23 program. The string "@@SubAddExPot@@" needs to be specified instead of "SubAddExPot=_xxx_/_yyy_/VL_main.py" in the option part.
+An input file for the GRRM23 program. See [AFIR-web](https://afir.sci.hokudai.ac.jp) for the detailed format. The string "@@SubAddExPot@@" needs to be specified instead of "SubAddExPot=_xxx_/_yyy_/VL_main.py" in the option part.
 
 ### GRRM_job_i.param
 An input file for the VL program. See the "README.md" file in the "VL" directory for detail. The parameter to be optimized must be specified as "@@_p<sub>j</sub>_<sup>label</sup>@@" instead of corresponding initial values. The label must be consistent with those written in _input_.txt.  
