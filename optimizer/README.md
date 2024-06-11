@@ -1,8 +1,10 @@
-# How to run
+# How to Run
 ## Step 0. Set GRRMs command
+Set up your computer enviroment so that a GRRM job can be executed with the following command: "GRRMs filename (without extension)".  
+[追加追加]scrディレクトリに持っていくこと　　
 
 ## Step 1. Prepare input files
-The following files are required. You can find elample files in the _Example_ directrory.  
+The following files are required. You can find elample files in the "Example" directrory.  
 - _input_.txt  
 - _GRRM_job_i_.com (i = 1–_n_)  
 - _GRRM_job_i_.param (i = 1–_n_)  
@@ -48,5 +50,21 @@ The "f_val_threshold" specifies another termination criterion. The calculation w
 An input file for the GRRM23 program. The string "@@SubAddExPot@@" needs to be specified in the option part.
 
 ### GRRM_job_i.param
-An input file for the VL program. See the _README.md_ file in the _VL_ directory for detail. The parameter to be optimized must be specified as "@@_p<sub>j</sub>_<sup>label</sup>@@" instead of corresponding initial values. The label must be consistent with those written in _input_.txt.  
+An input file for the VL program. See the "README.md" file in the "VL" directory for detail. The parameter to be optimized must be specified as "@@_p<sub>j</sub>_<sup>label</sup>@@" instead of corresponding initial values. The label must be consistent with those written in _input_.txt.  
+
+## Step 2. Modify z_function.py
+An arbitrary objective function can be implemented as the "calc_f_val_grad" function. The "f_val" specified here will be minimized. 
+You can find elample files in the "Example" directrory. The format for the "calc_f_val_grad" function is as follows:
+
+    def calc_f_val_grad(qm_ene_list, grad_list):
+        (calculation of f_val and f_grad)
+        return f_val, f_grad
+
+The "f_val" and "f_grad" are an objective function and a list of its gradients with respect to the VL parameters to be optimized.  
+The "qm_ene_list" argument is a list containing the electronic energy of com\__i_ (corrected by the corresponding _energy correction_ specified in  _input_.txt) as the *i*th component.  
+The "grad_list" argument is a list of lists, where the *j*th component of the *i*th list is corresponds to a derivative value of the *i*th electronic energy with respect to the *j*th parameter.
+
+## Step 3. Run calculation
+The calculation can be executed with the following command: 'python main.py _input_ run'.  
+Immediately, _GRRM_job_i_\_step0.com and _GRRM_job_i_\_step0.param (i = 1–_n_) will be generated and corresponding GRRM jobs are executed. After several steps, analysis.txt will appear, summarizing the results of the parameter optimization.
 
