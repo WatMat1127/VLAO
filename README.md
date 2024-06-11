@@ -8,9 +8,11 @@ For publication in GitHub, the codes have been slightly modified from the versio
 
 The codes have only been tested in the computer environment below, and may require minor modifications to run in different computer systems.
 
-### Test environment
+## Test environment
 - GRRM23 program  
 - Gaussian 16  
 - Python 3.11.5  
 - pytorch 2.1.0  
 - numpy 1.24.3  
+
+## Lisence
