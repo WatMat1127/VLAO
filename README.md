@@ -1,11 +1,14 @@
 # VLAO
-## Python programs for the Virtual Ligand-Assisted Optimization (VLAO)
-The "VL_main.py" (in the "VL" directory) is a program to calculate the penarty functions for the electronic and steric aproximation.
-The "main.py" (in the "optimizer" directory) is a program to perform optimization of VL parameters by the conjugate gradient method.
-Each portion has a readme file with further information.  
 
-For publication in GitHub, the codes have been slightly modified from the version used in the original paper (https://doi.org/XXXXXXXXXX), but it has been confirmed that essentially the same results are obtained.
+This repository contains code for the paper:   
+Virtual Ligand-Assisted Optimization: A Rational Strategy for Ligand Engineering (DOI: [10.26434/chemrxiv-2024-6www6](https://chemrxiv.org/engage/chemrxiv/article-details/662856e521291e5d1d87b234)).  
 
+It consists of two main components:
+- VL : python programs to calculate the penarty functions for the electronic and steric aproximation
+- optimizer : python programs to perform optimization of VL parameters by the conjugate gradient method
+  
+Each component has a readme file with further information. 
+The codes have been slightly modified from the version used in the original paper, but it has been confirmed that essentially the same results are obtained. 
 The codes have only been tested in the computer environment below, and may require minor modifications to run in different computer systems.
 
 ## Test environment
