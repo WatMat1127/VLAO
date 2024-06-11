@@ -6,8 +6,8 @@ Set up your computer enviroment so that a GRRM job can be executed with the foll
 ## Step 1. Prepare input files
 The following files are required. You can find elample files in the "Example" directrory.  
 - _input_.txt  
-- _GRRM_job_i_.com (i = 1–_n_)  
-- _GRRM_job_i_.param (i = 1–_n_)  
+- _GRRM_job_i_.com (_i_ = 1–_n_)  
+- _GRRM_job_i_.param (_i_ = 1–_n_)  
 
 
 ### _input_.txt
@@ -66,5 +66,5 @@ The "grad_list" argument is a list of lists, where the *j*th component of the *i
 
 ## Step 3. Run calculation
 The calculation can be executed with the following command: 'python main.py _input_ run'.  
-Immediately, _GRRM_job_i_\_step0.com and _GRRM_job_i_\_step0.param (i = 1–_n_) will be generated and corresponding GRRM jobs will be executed. After several steps, "analysis.txt" will appear, summarizing the results of the parameter optimization.
+Immediately, _GRRM_job_i_\_step0.com and _GRRM_job_i_\_step0.param (_i_ = 1–_n_) will be generated and corresponding GRRM jobs will be executed. After several steps, "analysis.txt" will appear, summarizing the results of the parameter optimization.
 
