@@ -1,7 +1,7 @@
 
 # How to Run
 ## Step 0. Modify the shebang line in the VL main.py
-Modify the line as `#!/_xxx_/_yyy_/python`.
+Modify the line as `#!/xxx/yyy/python`.
 
 ## Step 1. Prepare input files
 The following files are required. You can find example files in the `Example` directory.  
@@ -10,7 +10,7 @@ The following files are required. You can find example files in the `Example` di
 
 ### GRRM_job.com
 An input file for the GRRM23 program. See [AFIR-web](https://afir.sci.hokudai.ac.jp) for the detailed format.
-The `SubAddExPot=_xxx_/_yyy_/VL_main.py` option needs to be specified in the option part to use the VL method.
+The `SubAddExPot=xxx/yyy/VL_main.py` option needs to be specified in the option part to use the VL method.
 
 ### GRRM_job.param
 An input file for the `VL_main.py` which specifies settings for the VL calculation in the following format:
