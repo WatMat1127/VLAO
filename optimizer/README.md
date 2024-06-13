@@ -1,9 +1,22 @@
 # How to Run
 ## Step 0. Set GRRMsub command
-Set up your computer enviroment so that a GRRM job can be executed with the following command: `GRRMs filename`.
+Set up your computer enviroment so that a GRRM job can be executed with the following command: `GRRMsub filename`.  
+An example csh script for GRRMsub is shown below:  
+    
+    #!/bin/csh
+    
+    set fn_run=$argv[1]
+    set GRRM=/home/GRRM23rev1
+    
+    setenv subgrr $GRRM/GRRM.out
+    setenv subgau g16
+    setenv subchk formchk
+    setenv subuchk unfchk
+    setenv GAUSS_SCRDIR /scr/
+    
+    $GRRM/GRRMp $fn_run -p1 -s172800
 
-
-[追加追加]scrディレクトリに持っていくこと　　
+The variable `GRRM` sets the location where GRRM23p and GRRM23.out (GRRMp and GRRM.out？どっち？) are installed in your computer. For further instructions on how to run GRRM jobs, see [AFIR-web](https://afir.sci.hokudai.ac.jp).
 
 ## Step 1. Prepare input files
 The following files are required. You can find elample files in the `Example` directrory.  
