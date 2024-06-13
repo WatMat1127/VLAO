@@ -1,6 +1,8 @@
 # How to Run
-## Step 0. Set GRRMs command
-Set up your computer enviroment so that a GRRM job can be executed with the following command: `GRRMs filename`.  
+## Step 0. Set GRRMsub command
+Set up your computer enviroment so that a GRRM job can be executed with the following command: `GRRMs filename`.
+
+
 [追加追加]scrディレクトリに持っていくこと　　
 
 ## Step 1. Prepare input files
