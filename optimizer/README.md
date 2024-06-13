@@ -62,7 +62,7 @@ The `f_val_threshold` statement specifies another termination criterion. The cal
    
 
 ### _GRRM_job_i_.com
-An input file for the GRRM23 program. See [AFIR-web](https://afir.sci.hokudai.ac.jp) for the detailed format. The `@@SubAddExPot@@` needs to be specified instead of `SubAddExPot=_xxx_/_yyy_/VL_main.py` in the option part.
+An input file for the GRRM23 program. See [AFIR-web](https://afir.sci.hokudai.ac.jp) for the detailed format. The `@@SubAddExPot@@` needs to be specified instead of `SubAddExPot=xxx/yyy/VL_main.py` in the option part.
 
 ### _GRRM_job_i_.param
 An input file for the VL program. See the `README` in the `VL` directory for detail. The parameter to be optimized must be specified as "@@_p<sub>j</sub>_<sup>label</sup>@@" instead of corresponding initial values. The label must be consistent with those written in _input_.txt.  
