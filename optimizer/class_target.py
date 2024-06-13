@@ -85,6 +85,8 @@ class Target:
         subprocess.run('cp {0}_MO.rrm {1}_MO.rrm'.format(fn_istep, fn_nstep), shell=True)
         subprocess.run('cp {0}_LinkJOB.rrm {1}_LinkJOB.rrm'.format(fn_istep, fn_nstep), shell=True)
         subprocess.run('cp {0}_LinkJOB.rrm_old {1}_LinkJOB.rrm_old'.format(fn_istep, fn_nstep), shell=True)
+        subprocess.run('cp {0}_message_END.rrm {1}_message_END.rrm'.format(fn_istep, fn_nstep), shell=True)
+
         with open('analysis_copy.txt', mode='a') as g:
             g.write('step {0} is copied as step {1}: {2}\n'.format(istep, nstep, self.fn_target))
 
@@ -103,7 +105,7 @@ class Target:
                 # real run
                 #####-----
                 ftop_new = self.fn_target + '_step{}'.format(nstep)
-                subprocess.run('GRRMs {0}'.format(ftop_new), shell=True)
+                subprocess.run('GRRMsub {0}'.format(ftop_new), shell=True)
             else:
                 print('undefined run_tag: {}'.format(self.run_tag))
                 print('exit')
@@ -111,9 +113,14 @@ class Target:
 
     def read_QM_struct_ene(self, nstep, ene_tag):
         path_log = self.fn_target + '_step{}.log'.format(nstep)
+        path_message_end = self.fn_target + '_step{}_message_END.rrm'.format(nstep)
+        path_message_stop = self.fn_target + '_step{}_message_STOP.rrm'.format(nstep)
+        path_message_error = self.fn_target + '_step{}_message_ERROR.rrm'.format(nstep)
+        path_message_linkerror = self.fn_target + '_step{}_message_LinkERROR.rrm'.format(nstep)
+
         wait_tag = True
         while wait_tag:
-            if os.path.isfile(path_log):
+            if os.path.isfile(path_message_end):
                 with open(path_log, mode='r') as f:
                     lines = f.readlines()
                     list = [line.strip() for line in lines]
@@ -127,7 +134,12 @@ class Target:
                         print('Some error happened in QM calculation.', flush=True)
                         print(path_log)
                         exit()
-                        pass
+                        
+            elif os.path.isfile(path_message_stop) or os.path.isfile(path_message_error) or os.path.isfile(path_message_linkerror):
+                print('Some error happened in QM calculation.', flush=True)
+                print(path_log)
+                exit()
+                 
             else:
                 time.sleep(60)
                 wait_tag = True
