@@ -86,5 +86,8 @@ The calculation can be executed with the following command: `python main.py inpu
 As the optimization usually takes some time, it is recommended to run the calculation background with the following command:  
 `nohup python main.py input run > result.log &`.  
 
-Immediately, _GRRM_job_i_\_step0.com and _GRRM_job_i_\_step0.param (_i_ = 1–_n_) will be generated and corresponding GRRM jobs will be executed. After several steps, a file named analysis.txt will appear, summarizing the results of the parameter optimization.
+Immediately, _GRRM_job_i_\_step0.com and _GRRM_job_i_\_step0.param (_i_ = 1–_n_) will be generated and corresponding GRRM jobs will be executed. After several steps, a file named analysis.txt will appear, summarizing the results of the parameter optimization.  
+The `f_val_log` shows the objective function value at each iteration. The values with and without the barrier function will be reported.  
+The `f_grad_log` shows the derivative values of the objective function with respect to each VL parameter. These values will be reported in the order specified by `param_tag` in _input_.txt.   
+The `param_log` shows VL parameters at each iteration. These values will be reported in the order specified by `param_tag` in _input_.txt.
 
