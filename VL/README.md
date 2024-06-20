@@ -48,7 +48,7 @@ Each ligand section can include two or more `ovoid_LJpot` statements.
 
 ## Step 2. Run GRRM 
 
-Run the corresponding GRRMjob. For instructions on how to run GRRM jobs, see [AFIR-web](https://afir.sci.hokudai.ac.jp). The GRRM23 program calls the `VL_main.py` at each iteration of structural optimization. If the above settings are dene properly, you will find _GRRM_job_\_LinkJOB.rrm_old and _GRRM_job_\_LinkJOB.rrm_final in addition to usual output files of the GRRM23 program. When the ovoid-based LJ potential is used, _GRRM_job_.phi_log and _GRRM_job_\_ovoid.xyz will be also generated.
+Run the corresponding GRRMjob. For instructions on how to run GRRM jobs, see [AFIR-web](https://afir.sci.hokudai.ac.jp). The GRRM23 program calls the `VL_main.py` at each iteration of structural optimization. If the above settings are done properly, you will find _GRRM_job_\_LinkJOB.rrm_old and _GRRM_job_\_LinkJOB.rrm_final in addition to usual output files of the GRRM23 program. When the ovoid-based LJ potential is used, _GRRM_job_.phi_log and _GRRM_job_\_ovoid.xyz will be also generated.
 
 - _GRRM_job_\_LinkJOB.rrm_old and _GRRM_job_\_LinkJOB.rrm_final include the geometry and the corresponding electronic energy, gradient, and Hessian before and after adding penalty functions, respectively.
 - _GRRM_job_.phi_log includes the optimized internal parameters (**_q_**<sup>*</sup><sub>VL</sub>).
