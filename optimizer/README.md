@@ -79,7 +79,7 @@ You can find elample files in the `Example` directrory. The format for the `calc
 
 The `f_val` and `f_grad` are an objective function and a list of its gradients with respect to the VL parameters to be optimized.  
 The `qm_ene_list` argument is a list containing the electronic energy of _GRRM_job_i_ (corrected by the corresponding _energy correction_ specified in  _input_.txt) as the *i*th component.  
-The `grad_list` argument is a list of lists, where the *j*th component of the *i*th list is corresponds to a derivative value of the *i*th electronic energy with respect to the *j*th parameter.
+The `grad_list` argument is a list of `numpy.ndarray`, where the *j*th component of the *i*th `ndarray` is corresponds to a derivative value of the *i*th electronic energy with respect to the *j*th parameter.
 
 ## Step 3. Run calculation
 The calculation can be executed with the following command: `python main.py input run`.  
