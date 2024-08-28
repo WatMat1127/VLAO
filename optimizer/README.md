@@ -69,7 +69,7 @@ An input file for the VL program. See the `README` in the `VL` directory for det
 
 ## Step 2. Modify z_function.py
 An arbitrary objective function can be implemented as the `calc_f_val_grad` function. The `f_val` specified here will be minimized. 
-You can find elample files in the `Example` directrory. The format for the `calc_f_val_grad` function is as follows:
+You can find elample files in this directrory. The format for the `calc_f_val_grad` function is as follows:
 
     def calc_f_val_grad(qm_ene_list, grad_list):
         •••
