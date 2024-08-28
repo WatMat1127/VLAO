@@ -1,4 +1,4 @@
-#!/home/matsuoka/anaconda3/bin/python
+#!/path/to/python
 
 import numpy as np
 import os
