@@ -342,8 +342,6 @@ class OptInfo:
             #####-----
             np.set_printoptions(linewidth=10000)
 
-            tmp_list = self.ss_log.keys()
-
             with open("analysis.txt", mode="w") as g:
                 g.write("f_val_log\n")
                 g.write(
