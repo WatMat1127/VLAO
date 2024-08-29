@@ -1,7 +1,5 @@
 
 # How to Run
-## Step 0. Modify the shebang line in the VL main.py
-Modify the line as `#!/xxx/yyy/python`.
 
 ## Step 1. Prepare input files
 The following files are required. You can find example files in the `Example` directory.  

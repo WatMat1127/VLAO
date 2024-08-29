@@ -1,4 +1,4 @@
-#!/path/to/python
+#!/usr/bin/env python3
 
 import numpy as np
 import os
@@ -17,17 +17,17 @@ path_prog = sys.argv[0]
 dir_prog = os.path.dirname(sys.argv[0])
 
 path_LinkJOB = sys.argv[1]
-path_LinkJOB_write = path_LinkJOB + '_final'
-path_fn_top = sys.argv[1].split('_LinkJOB')[0]
-path_param = path_fn_top + '.param'
-path_param_tag = path_fn_top + '.param_tag'
-path_param_grad = path_fn_top + '.param_grad'
-path_com = path_fn_top + '.com'
-path_phi_log = path_fn_top + '.phi_log'
-if dir_prog != '':
-    path_MM_param = os.path.dirname(sys.argv[0]) + '/MM_param.txt'
+path_LinkJOB_write = path_LinkJOB + "_final"
+path_fn_top = sys.argv[1].split("_LinkJOB")[0]
+path_param = path_fn_top + ".param"
+path_param_tag = path_fn_top + ".param_tag"
+path_param_grad = path_fn_top + ".param_grad"
+path_com = path_fn_top + ".com"
+path_phi_log = path_fn_top + ".phi_log"
+if dir_prog != "":
+    path_MM_param = os.path.dirname(sys.argv[0]) + "/MM_param.txt"
 else:
-    path_MM_param = 'MM_param.txt'
+    path_MM_param = "MM_param.txt"
 
 #####-----------------
 # read LinkJOB, param and com files
@@ -61,12 +61,14 @@ MM_param_list = MM_param.make_list(atom_order)
 #####-----------------
 # run main　processes
 #####-----------------
-if len(sys.argv) >= 3 and 'param_grad' in sys.argv[2]:
+if len(sys.argv) >= 3 and "param_grad" in sys.argv[2]:
     #####-----------------
     #   calculate dE/dp_VL
     #####-----------------
     param_tag = VL_class_files.ParamFile(path_param_tag, comfile.natom_all)
-    dat_param_grad = VL_calc_param_grad.VL_param_grad(xyz, param, param_tag, MM_param_list, path_phi_log)
+    dat_param_grad = VL_calc_param_grad.VL_param_grad(
+        xyz, param, param_tag, MM_param_list, path_phi_log
+    )
 
 else:
     #####-----------------
@@ -79,7 +81,9 @@ else:
     keeppyr_pot.add_keep_pyr_pot(xyz, param.keeppyr_info)
 
     LJ_asym_ell_pot = VL_class_penarty.Penarty(linkjob.natom_active)
-    LJ_asym_ell_pot.add_LJ_asym_ell_pot(xyz, param.LJ_asym_ell_info, MM_param_list, path_phi_log, atom_order)
+    LJ_asym_ell_pot.add_LJ_asym_ell_pot(
+        xyz, param.LJ_asym_ell_info, MM_param_list, path_phi_log, atom_order
+    )
 
     total_penarty = VL_class_penarty.Penarty(linkjob.natom_active)
     total_penarty.combine_penarties([keep_pot, keeppyr_pot, LJ_asym_ell_pot])
@@ -94,4 +98,3 @@ else:
     cmd_cp_2 = "cp %s %s" % (path_LinkJOB_write, path_LinkJOB)
     subprocess.call(cmd_cp_1, shell=True)
     subprocess.call(cmd_cp_2, shell=True)
-
