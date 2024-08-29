@@ -5,7 +5,7 @@ This repository contains codes for the paper:
 
 Please cite this version as:
 
-> Matsuoka, W.; Oki, T.; Yamada, R.; Yokoyama, T.; Suda, S.; Harabuchi, Y.; Iwata, S.; Maeda, S. ChemRxiv 2024. DOI: 10.26434/chemrxiv-2024-6www6  
+> Matsuoka, W.; Oki, T.; Yamada, R.; Yokoyama, T.; Suda, S.; Saunders, C. M.; Skjelstad, B. B.; Harabuchi, Y.; Fey, N.; Iwata, S.; Maeda, S. ChemRxiv 2024. DOI: 10.26434/chemrxiv-2024-6www6  
 
 It consists of two main components:
 - VL : python programs to calculate the penarty functions for the electronic and steric aproximations
