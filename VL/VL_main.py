@@ -66,7 +66,7 @@ if len(sys.argv) >= 3 and "param_grad" in sys.argv[2]:
     #   calculate dE/dp_VL
     #####-----------------
     param_tag = VL_class_files.ParamFile(path_param_tag, comfile.natom_all)
-    dat_param_grad = VL_calc_param_grad.VL_param_grad(
+    VL_calc_param_grad.VL_param_grad(
         xyz, param, param_tag, MM_param_list, path_phi_log
     )
 
