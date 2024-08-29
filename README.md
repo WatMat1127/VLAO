@@ -1,10 +1,11 @@
 # VLAO
 
 This repository contains codes for the paper:   
-Virtual Ligand-Assisted Optimization: A Rational Strategy for Ligand Engineering (DOI: [10.26434/chemrxiv-2024-6www6](https://chemrxiv.org/engage/chemrxiv/article-details/662856e521291e5d1d87b234)).  
+> Virtual Ligand-Assisted Optimization: A Rational Strategy for Ligand Engineering (DOI: [10.26434/chemrxiv-2024-6www6](https://chemrxiv.org/engage/chemrxiv/article-details/662856e521291e5d1d87b234)).  
 
-Please cite this version as:  
-Matsuoka, W.; Oki, T.; Yamada, R.; Yokoyama, T.; Suda, S.; Harabuchi, Y.; Iwata, S.; Maeda, S. ChemRxiv 2024. DOI: 10.26434/chemrxiv-2024-6www6  
+Please cite this version as:
+
+> Matsuoka, W.; Oki, T.; Yamada, R.; Yokoyama, T.; Suda, S.; Harabuchi, Y.; Iwata, S.; Maeda, S. ChemRxiv 2024. DOI: 10.26434/chemrxiv-2024-6www6  
 
 It consists of two main components:
 - VL : python programs to calculate the penarty functions for the electronic and steric aproximations
