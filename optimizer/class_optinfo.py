@@ -1,6 +1,4 @@
 import numpy as np
-import copy
-import math
 import class_target
 import z_function
 import calc_barrier

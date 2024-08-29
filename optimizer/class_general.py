@@ -1,5 +1,4 @@
 import os
-import copy
 import numpy as np
 from write_read_files import txtfile2list
 from write_read_files import list2textfile

@@ -1,6 +1,4 @@
 import numpy as np
-import copy
-import math
 
 
 def switching_barrier(param, param_range, penarty_val):

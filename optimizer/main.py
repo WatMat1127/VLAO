@@ -2,7 +2,6 @@
 import sys
 import numpy as np
 import class_optinfo
-import class_general
 
 #####-----
 # read initial information
