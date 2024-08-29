@@ -5,9 +5,10 @@ import class_target
 import z_function
 import calc_barrier
 
+
 class OptInfo:
     def __init__(self, input_path, run_tag):
-        self.info_path = input_path + '.txt'
+        self.info_path = input_path + ".txt"
         self.run_tag = run_tag
         self.nstep = 0
         self.nstep_iitr = 0
@@ -27,62 +28,59 @@ class OptInfo:
         info_path = self.info_path
 
         target_list = []
-        with open(info_path, mode='r') as f:
+        with open(info_path, mode="r") as f:
             lines = f.readlines()
             for line in lines:
-                tmp_str = line.strip().split('#')[0]
-                if tmp_str == '':
+                tmp_str = line.strip().split("#")[0]
+                if tmp_str == "":
                     pass
                 else:
-                    if 'com' in tmp_str:
-                        ftop_target = tmp_str.split()[1].split(',')[0]
+                    if "com" in tmp_str:
+                        ftop_target = tmp_str.split()[1].split(",")[0]
                         target = class_target.Target(ftop_target)
                         target.add_ene = float(tmp_str.split()[2])
                         target_list.append(target)
 
-                    elif 'ene_read' in tmp_str:
+                    elif "ene_read" in tmp_str:
                         ene_tag = tmp_str.split()[1]
 
-                    elif 'SubAddExPot' in tmp_str:
+                    elif "SubAddExPot" in tmp_str:
                         expot_tag = tmp_str
 
-                    elif 'init_param' in tmp_str:
-                        x0 = tmp_str.split(':')[1]
-                        x0 = [float(i) for i in x0.split(',')]
+                    elif "init_param" in tmp_str:
+                        x0 = tmp_str.split(":")[1]
+                        x0 = [float(i) for i in x0.split(",")]
 
-                    elif 'param_tag' in tmp_str:
-                        param_tag_tmp = tmp_str.split(':')[1]
-                        param_tag = [i.strip() for i in param_tag_tmp.split(',')]
+                    elif "param_tag" in tmp_str:
+                        param_tag_tmp = tmp_str.split(":")[1]
+                        param_tag = [i.strip() for i in param_tag_tmp.split(",")]
 
-                    elif 'param_range' in tmp_str:
-                        param_range_tmp = tmp_str.split(':')[1]
-                        tmp_list = param_range_tmp.split(',')
+                    elif "param_range" in tmp_str:
+                        param_range_tmp = tmp_str.split(":")[1]
+                        tmp_list = param_range_tmp.split(",")
                         param_range = []
                         for irange in tmp_list:
-                            p_min = float(irange.split('_')[0])
-                            p_max = float(irange.split('_')[1])
+                            p_min = float(irange.split("_")[0])
+                            p_max = float(irange.split("_")[1])
                             param_range.append([p_min, p_max])
 
-                    elif 'max_itr' in tmp_str:
-                        max_itr = int(tmp_str.split(':')[1].strip())
+                    elif "max_itr" in tmp_str:
+                        max_itr = int(tmp_str.split(":")[1].strip())
 
-                    elif 'grad_threshold' in tmp_str:
-                        grad_threshold = float(tmp_str.split(':')[1].strip())
+                    elif "grad_threshold" in tmp_str:
+                        grad_threshold = float(tmp_str.split(":")[1].strip())
 
-                    elif 'param_threshold' in tmp_str:
-                        param_threshold = float(tmp_str.split(':')[1].strip())
+                    elif "param_threshold" in tmp_str:
+                        param_threshold = float(tmp_str.split(":")[1].strip())
 
-                    elif 'f_val_threshold' in tmp_str:
-                        f_val_threshold = float(tmp_str.split(':')[1].strip())
+                    elif "f_val_threshold" in tmp_str:
+                        f_val_threshold = float(tmp_str.split(":")[1].strip())
 
-                    elif 'penalty_std' in tmp_str:
-                        penalty_std = float(tmp_str.split(':')[1].strip())
-
-
-
+                    elif "penalty_std" in tmp_str:
+                        penalty_std = float(tmp_str.split(":")[1].strip())
 
         self.target_list = target_list
-        self.ene_tag = 'E'
+        self.ene_tag = "E"
         self.expot_tag = expot_tag
         self.param_log[0] = np.array(x0)
         self.param_tag = param_tag
@@ -103,10 +101,10 @@ class OptInfo:
         param = self.param_log[self.nstep]
         penarty_std = self.penalty_std
         dat_info = {}
-        dat_info['nstep'] = nstep
-        dat_info['param'] = param
-        dat_info['param_tag'] = self.param_tag
-        dat_info['expot_tag'] = self.expot_tag
+        dat_info["nstep"] = nstep
+        dat_info["param"] = param
+        dat_info["param_tag"] = self.param_tag
+        dat_info["expot_tag"] = self.expot_tag
 
         for itgt in target_list:
             itgt.run_tag = self.run_tag
@@ -140,7 +138,7 @@ class OptInfo:
             qm_ene = itgt.read_QM_struct_ene(nstep, self.ene_tag)
             qm_ene += itgt.add_ene
             qm_ene_list.append(qm_ene)
-        
+
         #####-----
         # calculate dE/dp
         #####-----
@@ -151,14 +149,16 @@ class OptInfo:
 
         #####-----
         # calculate f_val and f_grad
-        #####-----        
+        #####-----
         f_val, f_grad = z_function.calc_f_val_grad(qm_ene_list, grad_list)
-        
+
         #####-----
         # calculate barrier function
         #####-----
 
-        barrier_val, barrier_grad = calc_barrier.switching_barrier(param, self.param_range, penarty_std)
+        barrier_val, barrier_grad = calc_barrier.switching_barrier(
+            param, self.param_range, penarty_std
+        )
         f_val += barrier_val
         f_grad += barrier_grad
 
@@ -178,12 +178,13 @@ class OptInfo:
         f_grad_m = self.f_grad_log[self.nstep_iitr]
         d_vec_m_tmp = self.d_vec_tmp_log[self.nstep_iitr]
 
-
         if f_grad_m is None:
             d_vec_n_tmp = -1 * f_grad_n
 
         else:
-            beta_n = np.dot(f_grad_n, (f_grad_n - f_grad_m)) / np.dot(f_grad_m, f_grad_m)
+            beta_n = np.dot(f_grad_n, (f_grad_n - f_grad_m)) / np.dot(
+                f_grad_m, f_grad_m
+            )
             d_vec_n_tmp = -1 * f_grad_n + beta_n * d_vec_m_tmp
         d_vec_n = d_vec_n_tmp / np.linalg.norm(d_vec_n_tmp)
 
@@ -319,7 +320,6 @@ class OptInfo:
             self.f_grad_log[self.nstep] = f_grad_p
             self.penalty_log[self.nstep] = penarty_val_p
 
-
             #####-----
             # calculate angle between d_vec and grad
             #####-----
@@ -346,39 +346,66 @@ class OptInfo:
 
             tmp_list = self.ss_log.keys()
 
-            with open('analysis.txt', mode='w') as g:
-                g.write('f_val_log\n')
-                g.write('0 (step0) {0} {1}\n'.format(self.f_val_log[0], self.f_val_log[0] - self.penalty_log[0]))
+            with open("analysis.txt", mode="w") as g:
+                g.write("f_val_log\n")
+                g.write(
+                    "0 (step0) {0} {1}\n".format(
+                        self.f_val_log[0], self.f_val_log[0] - self.penalty_log[0]
+                    )
+                )
                 for i, istep in enumerate(self.ss_log):
-                    g.write('{0} (step{1}) {2} {3}\n'.format(i + 1, istep, self.f_val_log[istep], self.f_val_log[istep] - self.penalty_log[istep]))
+                    g.write(
+                        "{0} (step{1}) {2} {3}\n".format(
+                            i + 1,
+                            istep,
+                            self.f_val_log[istep],
+                            self.f_val_log[istep] - self.penalty_log[istep],
+                        )
+                    )
 
-                g.write('f_grad_log\n')
-                g.write('0 (step0) {0}\n'.format(self.f_grad_log[0]))
+                g.write("f_grad_log\n")
+                g.write("0 (step0) {0}\n".format(self.f_grad_log[0]))
                 for i, istep in enumerate(self.ss_log):
-                    g.write('{0} (step{1}) {2}\n'.format(i + 1, istep, self.f_grad_log[istep]))
+                    g.write(
+                        "{0} (step{1}) {2}\n".format(
+                            i + 1, istep, self.f_grad_log[istep]
+                        )
+                    )
 
-                g.write('param_log\n')
-                g.write('0 (step0) {0}\n'.format(self.param_log[0]))
+                g.write("param_log\n")
+                g.write("0 (step0) {0}\n".format(self.param_log[0]))
                 for i, istep in enumerate(self.ss_log):
-                    g.write('{0} (step{1}) {2}\n'.format(i + 1, istep, self.param_log[istep]))
+                    g.write(
+                        "{0} (step{1}) {2}\n".format(
+                            i + 1, istep, self.param_log[istep]
+                        )
+                    )
 
-                g.write('d_vec_log\n')
+                g.write("d_vec_log\n")
                 for i, istep in enumerate(self.d_vec_log):
-                    g.write('{0} (step{1}) {2}\n'.format(i, istep, self.d_vec_log[istep]))
+                    g.write(
+                        "{0} (step{1}) {2}\n".format(i, istep, self.d_vec_log[istep])
+                    )
 
-                g.write('ss_log\n')
+                g.write("ss_log\n")
                 for i, istep in enumerate(self.ss_log):
-                    g.write('{0} (step{1}) {2}\n'.format(i + 1, istep, self.ss_log[istep]))
+                    g.write(
+                        "{0} (step{1}) {2}\n".format(i + 1, istep, self.ss_log[istep])
+                    )
 
-                g.write('angle_log\n')
+                g.write("angle_log\n")
                 for i, istep in enumerate(self.ss_log):
-                    g.write('{0} (step{1}) {2}\n'.format(i + 1, istep, self.angle_log[istep]))
+                    g.write(
+                        "{0} (step{1}) {2}\n".format(
+                            i + 1, istep, self.angle_log[istep]
+                        )
+                    )
 
             #####-----
             # judge if f_val is lower than threshold
             #####-----
             if f_val_p <= self.f_val_threshold:
-                print('The F value is low enough, terminate calculation')
+                print("The F value is low enough, terminate calculation")
                 exit()
 
             elif end_tag:
