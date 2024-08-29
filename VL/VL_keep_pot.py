@@ -1,5 +1,6 @@
 import torch
 
+
 def calc_keeppot(xyz, keep_info):
     add_ene = 0
 
@@ -7,10 +8,10 @@ def calc_keeppot(xyz, keep_info):
         ilig_keep_info = keep_info[ilig]
         for ipot in ilig_keep_info:
             tmp_keep_info = ilig_keep_info[ipot]
-            vec_1 = xyz[tmp_keep_info['atom_number_P']]
-            vec_2 = xyz[tmp_keep_info['atom_number_xi']]
-            k_val = tmp_keep_info['k_val']
-            d_val = tmp_keep_info['d_val']
+            vec_1 = xyz[tmp_keep_info["atom_number_P"]]
+            vec_2 = xyz[tmp_keep_info["atom_number_xi"]]
+            k_val = tmp_keep_info["k_val"]
+            d_val = tmp_keep_info["d_val"]
 
             vec_12 = vec_2 - vec_1
             dist_12 = torch.linalg.norm(vec_12)

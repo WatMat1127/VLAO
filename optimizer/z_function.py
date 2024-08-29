@@ -1,8 +1,3 @@
-import numpy as np
-import copy
-import math
-
-
 def calc_f_val_grad(qm_ene_list, grad_list):
     eq_ene = qm_ene_list[0]
     ts_ene = qm_ene_list[1]

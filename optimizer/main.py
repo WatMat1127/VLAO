@@ -1,16 +1,16 @@
+#!/usr/bin/env python3
 import sys
 import numpy as np
 import class_optinfo
-import class_general
 
 #####-----
 # read initial information
 #####-----
 args = sys.argv
 if len(args) != 3:
-    print('[VL_optimizer] execute as follows:')
-    print('[VL_optimizer] python main.py [xxx.info] [run_type]')
-    print('[VL_optimizer] run_type options : dummy, run, stop')
+    print("[VL_optimizer] execute as follows:")
+    print("[VL_optimizer] python main.py [xxx.info] [run_type]")
+    print("[VL_optimizer] run_type options : dummy, run, stop")
     exit()
 
 elif len(args) == 3:
@@ -77,6 +77,6 @@ elif len(args) == 3:
         iitr += 1
 
     if tag_continue:
-        print('Maximum number of iteration was exceeded.')
+        print("Maximum number of iteration was exceeded.")
     else:
-        print('CONVERGED!!!')
+        print("CONVERGED!!!")

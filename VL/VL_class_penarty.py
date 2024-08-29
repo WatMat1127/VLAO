@@ -24,7 +24,6 @@ class Penarty:
                     hessian_list_iatom.append([3 * [0.0], 3 * [0.0], 3 * [0.0]])
             self.add_hess.append(hessian_list_iatom)
 
-
     def reshape_torch_grad_hess(self, torch_grad, torch_hess, natom_active=None):
         if natom_active == None:
             natom_active = self.natom_active
@@ -39,9 +38,13 @@ class Penarty:
                     for jdim in range(3):
                         if iatom == jatom:
                             if idim >= jdim:
-                                self.add_hess[iatom][jatom][idim][jdim] += torch_hess[iatom][idim][jatom][jdim].item()
+                                self.add_hess[iatom][jatom][idim][jdim] += torch_hess[
+                                    iatom
+                                ][idim][jatom][jdim].item()
                         elif iatom > jatom:
-                            self.add_hess[iatom][jatom][idim][jdim] += torch_hess[iatom][idim][jatom][jdim].item()
+                            self.add_hess[iatom][jatom][idim][jdim] += torch_hess[
+                                iatom
+                            ][idim][jatom][jdim].item()
                         else:
                             pass
         return
@@ -57,32 +60,53 @@ class Penarty:
     def add_keep_pyr_pot(self, xyz, keep_pyr_info):
         if len(keep_pyr_info) != 0:
             ene = VL_keep_pyr_pot.calc_keep_pyr_pot(xyz, keep_pyr_info)
-            grad = torch.func.jacfwd(VL_keep_pyr_pot.calc_keep_pyr_pot)(xyz, keep_pyr_info)
-            hessian = torch.func.hessian(VL_keep_pyr_pot.calc_keep_pyr_pot)(xyz, keep_pyr_info)
+            grad = torch.func.jacfwd(VL_keep_pyr_pot.calc_keep_pyr_pot)(
+                xyz, keep_pyr_info
+            )
+            hessian = torch.func.hessian(VL_keep_pyr_pot.calc_keep_pyr_pot)(
+                xyz, keep_pyr_info
+            )
             self.add_ene = ene.item()
             self.reshape_torch_grad_hess(grad, hessian)
 
-    def add_LJ_asym_ell_pot(self, xyz, LJ_asym_ell_info, MM_param_list, path_phi_log, atom_order):
+    def add_LJ_asym_ell_pot(
+        self, xyz, LJ_asym_ell_info, MM_param_list, path_phi_log, atom_order
+    ):
         if len(LJ_asym_ell_info) != 0:
-            phi_list = VL_LJ_asym_ell_pot.microiteration_phi(xyz, MM_param_list, LJ_asym_ell_info, path_phi_log)
+            phi_list = VL_LJ_asym_ell_pot.microiteration_phi(
+                xyz, MM_param_list, LJ_asym_ell_info, path_phi_log
+            )
             xyz_phi_tensor = VL_LJ_asym_ell_pot.conbine_xyz_phi(xyz, phi_list)
-            ene = VL_LJ_asym_ell_pot.calc_ene(xyz_phi_tensor, MM_param_list, LJ_asym_ell_info, log_tag=True, atom_order=atom_order, path_phi_log=path_phi_log)
+            ene = VL_LJ_asym_ell_pot.calc_ene(
+                xyz_phi_tensor,
+                MM_param_list,
+                LJ_asym_ell_info,
+                log_tag=True,
+                atom_order=atom_order,
+                path_phi_log=path_phi_log,
+            )
             self.add_ene = ene.item()
             del ene
-            grad = torch.func.jacfwd(VL_LJ_asym_ell_pot.calc_ene)(xyz_phi_tensor, MM_param_list, LJ_asym_ell_info)
-            hessian = torch.func.hessian(VL_LJ_asym_ell_pot.calc_ene)(xyz_phi_tensor, MM_param_list, LJ_asym_ell_info)
+            grad = torch.func.jacfwd(VL_LJ_asym_ell_pot.calc_ene)(
+                xyz_phi_tensor, MM_param_list, LJ_asym_ell_info
+            )
+            hessian = torch.func.hessian(VL_LJ_asym_ell_pot.calc_ene)(
+                xyz_phi_tensor, MM_param_list, LJ_asym_ell_info
+            )
             natom = len(MM_param_list)
 
-            grad = torch.reshape(grad[:3 * natom], (natom, 3))
-            hessian_tmp_1 = hessian[:3 * natom].T
-            hessian_rr = hessian_tmp_1[:3 * natom].T
-            hessian_rn = hessian_tmp_1[3 * natom:].T
+            grad = torch.reshape(grad[: 3 * natom], (natom, 3))
+            hessian_tmp_1 = hessian[: 3 * natom].T
+            hessian_rr = hessian_tmp_1[: 3 * natom].T
+            hessian_rn = hessian_tmp_1[3 * natom :].T
 
-            hessian_tmp_2 = hessian[3 * natom:].T
-            hessian_nn = hessian_tmp_2[3 * natom:].T
-            hessian_nr = hessian_tmp_2[:3 * natom].T
+            hessian_tmp_2 = hessian[3 * natom :].T
+            hessian_nn = hessian_tmp_2[3 * natom :].T
+            hessian_nr = hessian_tmp_2[: 3 * natom].T
 
-            hessian_tmp_3 = hessian_rr - torch.matmul(hessian_rn, torch.matmul(torch.linalg.inv(hessian_nn), hessian_nr))
+            hessian_tmp_3 = hessian_rr - torch.matmul(
+                hessian_rn, torch.matmul(torch.linalg.inv(hessian_nn), hessian_nr)
+            )
             eff_hessian = torch.reshape(hessian_tmp_3, (natom, 3, natom, 3))
             self.reshape_torch_grad_hess(grad, eff_hessian)
 
@@ -100,11 +124,12 @@ class Penarty:
                         for jdim in range(3):
                             if iatom == jatom:
                                 if idim >= jdim:
-                                    self.add_hess[iatom][jatom][idim][jdim] += ipenarty.add_hess[iatom][jatom][idim][jdim]
+                                    self.add_hess[iatom][jatom][idim][
+                                        jdim
+                                    ] += ipenarty.add_hess[iatom][jatom][idim][jdim]
                             elif iatom > jatom:
-                                self.add_hess[iatom][jatom][idim][jdim] += ipenarty.add_hess[iatom][jatom][idim][jdim]
+                                self.add_hess[iatom][jatom][idim][
+                                    jdim
+                                ] += ipenarty.add_hess[iatom][jatom][idim][jdim]
                             else:
                                 pass
-
-
-
