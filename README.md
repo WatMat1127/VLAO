@@ -5,7 +5,7 @@ This repository contains codes for the paper:
 
 Please cite this version as:
 
-> Matsuoka, W.; Oki, T.; Yamada, R.; Yokoyama, T.; Suda, S.; Saunders, C. M.; Skjelstad, B. B.; Harabuchi, Y.; Fey, N.; Iwata, S.; Maeda, S. ACS Catal. 2024, 14, 16297. 
+> Matsuoka, W.; Oki, T.; Yamada, R.; Yokoyama, T.; Suda, S.; Saunders, C. M.; Skjelstad, B. B.; Harabuchi, Y.; Fey, N.; Iwata, S.; Maeda, S. _ACS Catal._ **2024**, _14_, 16297. 
 
 It consists of two main components:
 - VL : python programs to calculate the penarty functions for the electronic and steric aproximations
