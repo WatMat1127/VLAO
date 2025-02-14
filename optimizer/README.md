@@ -42,8 +42,8 @@ An input file for `main.py` which specifies GRRM jobs to be executed, the absolu
   \# parameter setting  
   param_tag  : $p_1^\mathrm{label}$, $p_2^\mathrm{label}$, $p_3^\mathrm{label}$, ..., $p_N^\mathrm{label}$  
   init_param : $p_1^\mathrm{init}$, $p_2^\mathrm{init}$, $p_3^\mathrm{init}$, ..., $p_N^\mathrm{init}$  
-  param_range: $p_1^\mathrm{low}$, $p_1^\mathrm{high}$, $p_2^\mathrm{low}$, $p_2^\mathrm{high}$, $p_3^\mathrm{low}$, $p_3^\mathrm{high}$ ..., $p_N^\mathrm{low}$, $p_N^\mathrm{high}$
-  penalty_std: $P_0$
+  param_range: $p_1^\mathrm{low}$, $p_1^\mathrm{high}$, $p_2^\mathrm{low}$, $p_2^\mathrm{high}$, $p_3^\mathrm{low}$, $p_3^\mathrm{high}$ ..., $p_N^\mathrm{low}$, $p_N^\mathrm{high}$  
+  penalty_std: $P_0$  
   
   \# detailed setting  
   max_itr         : (int)   
